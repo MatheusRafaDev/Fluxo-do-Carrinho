@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import home from './home'
-import detalhe from './produto'
+import detalhe from './detalhes'
 import carrinho from './carrinho'
 
 const rootElement = document.getElementById("root");

@@ -7,11 +7,16 @@ const Container = styled.div`
   align-items: center;
 
   padding: 2em 5em;
+  background-color: #99c1ff;
 
   .itens {
     display: flex;
     flex-direction: column;
     width: 100%;
+  }
+
+  h1 {
+    font-family: 'Brush Script MT', cursive;
   }
 `
 

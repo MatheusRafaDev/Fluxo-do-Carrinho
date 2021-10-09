@@ -10,22 +10,21 @@ export default function DetalheProduto(props) {
 
 
 
-    function comprar() {
-
+     function comprar() {
         let carrinho = Cookie.get('carrinho');
         carrinho = carrinho !== undefined
                     ? JSON.parse(carrinho)
                     : [];
         if(carrinho.some(item => item.id === produto.id) === false)
-           carrinho.push({...produtto, qtd: 1 });
+           carrinho.push({...produto, qtd: 1 });
 
         Cookie.set('carrinho', JSON.stringify(carrinho));
         navigation.push('/carrinho');
     }   
 
+
     return (
         <Container>
-
             <div>
                 <Link to="/">Voltar </Link>
                 <h1> Detalhes do Produto </h1>
@@ -43,7 +42,7 @@ export default function DetalheProduto(props) {
                 <h2>Especificações </h2>
                 <div> {produto.especificacoes}</div> 
 
-                <div><button OnClick={Comprar} > Comprar </button></div>
+                <button onClick={comprar}> Comprar </button>
             </div>
             
         </Container>

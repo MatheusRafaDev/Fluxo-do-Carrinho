@@ -6,7 +6,7 @@ const Container = styled.div`
   align-items: center;
   width: 60%;
 
-  font: 700 1em Roboto;
+  font-family: 'Brush Script MT', cursive;
 
   & > div {
     margin: 2em 0em;
@@ -25,11 +25,14 @@ const Container = styled.div`
   img {
     width: 7em;
     height: auto;
+    border-radius: 20px;
+    box-shadow: 2px 2px 5px black;
   }
 
   .remover img {
     width: 3em;
     cursor: pointer;
+    box-shadow: 2px 2px 5px black;
   }
 `
 

@@ -9,10 +9,7 @@ import { Container, RemoverIcon } from './styled'
 
 export default function CarrinhoItem(props) {
   const [produto, setProduto] = useState(props.info);
-
   
-
-
   function alterarQtd(qtd) {
     setProduto({...produto, qtd });
     props.onUpdate(produto.id, qtd)
