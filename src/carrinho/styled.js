@@ -18,6 +18,7 @@ const Container = styled.div`
   h1 {
     font-family: 'Brush Script MT', cursive;
   }
+  
 `
 
 
