@@ -1,43 +1,68 @@
 import { Link } from "react-router-dom";
 import { Container } from './styled'
-import { useEffects, useState } from "react"
+import { useEffect, useState } from "react"
 
+import React from 'react'
 import Cookie from 'js-cookie'
 import CarrinhoItem from './CarrinhoItem'
 
 
 
+
+
 export default function Carrinho() {
+  const [produtos, setProdutos] = useState([]);
+  useEffect(carregarCarrinho, []);
 
-    const [produtos, setProdutos ] = useState([]);
 
 
-    useEffect(carregarCarrinho, []);
+  function carregarCarrinho() {
+    let carrinho = Cookie.get('carrinho');
+    carrinho = carrinho !== undefined 
+                  ? JSON.parse(carrinho) 
+                  : [];
 
-    function carregarCarrinho() {
-        let carrinho = Cookie.get('carrinho');
-        carrinho = carrinho 1== undefined
-                        ? JSON.parse(carrinho)
-                        : [];
+    setProdutos(carrinho);
+  }
+  
 
-        setProdutos(carrinho);
-    }
+  function removerProduto(id) {
 
-    function removerProduto(id) {
+    let carrinho = produtos.filter(item => item.id !== id);
+    Cookie.set('carrinho', JSON.stringify(carrinho));
 
-        let carrinho = produto.filter(item => item.id !== id);
+    setProdutos([...carrinho]);
+  }
 
-        Cookie.set('carrinho', JSON.stringify(carrinho));
 
-        setProdutos([...carrinho]);
-    }
+  function alterarProduto(id, qtd) {
+     let produtoAlterado = produtos.filter(item => item.id === id)[0];
+     produtoAlterado.qtd = qtd;
 
-    function alterarProduto(id, qtd ){
+     Cookie.set('carrinho', JSON.stringify(produtos));
+  }
 
-        let produtoAlterado = produtos.filter(Item => item.id === id) [0];
-        produtoAlterado.wtd = qtd
 
-        Cookie.set('carrinho', JSON.stringify(produtos));
-    }
+
+
+
+  return (
+    <Container>
+      <h1> Carrinho </h1>
+
+      <Link to="/"> Voltar </Link>
+
+      <div className="itens">
+        {produtos.map(item => 
+            <CarrinhoItem key={item.id} 
+                info={item} 
+                onUpdate={alterarProduto} 
+                onRemove={removerProduto} />
+        )}
+      </div>
+
+    </Container>
+  )
+
 
 }
